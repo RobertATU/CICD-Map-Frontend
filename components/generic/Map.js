@@ -44,8 +44,7 @@ function Map(props) {
         const pin = new mapboxgl.Marker()
           .setLngLat([pins[i].longitude, pins[i].latitude])
           .addTo(map);
-          const createdAtDate = new Date(pins[i].id.date)
-          const formattedDate = createdAtDate.toLocaleDateString('en-GB');
+          
         pin.setPopup(
           new mapboxgl.Popup().setHTML(`<h3>${pins[i].sheepId}</h3><p>Seen at: ${pins[i].date}</p>`)
         );
