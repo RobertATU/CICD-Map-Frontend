@@ -44,10 +44,17 @@ function Map(props) {
         const pin = new mapboxgl.Marker()
           .setLngLat([pins[i].longitude, pins[i].latitude])
           .addTo(map);
-          
-        pin.setPopup(
-          new mapboxgl.Popup().setHTML(`<h3>${pins[i].sheepId}</h3><p>Seen at: ${pins[i].date}</p>`)
-        );
+
+          const pinPopContent = document.createElement('div');
+          pinPopContent.innerHTML = `<h3>${pins[i].sheepId}</h3><p>Seen at: ${pins[i].date}</p><button id="deleteButton_${i}">test</button>`;
+
+          const pinPopup =  new mapboxgl.Popup().setDOMContent(pinPopContent);
+          pin.setPopup(pinPopup);
+
+       pinPopContent.querySelector(`#deleteButton_${i}`).addEventListener("click",() =>{
+        globalCtx.deletePins(pins[i].sheepId)
+        map.setCenter(mapCenter);
+       })
         pin.getElement().addEventListener("click", () => {
           pin.togglePopup();
         });

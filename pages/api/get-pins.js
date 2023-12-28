@@ -1,4 +1,5 @@
 async function handler(req, res) { 
+  
   const response = await fetch('http://localhost:8080/pins', {
     method: 'GET',
     headers: {

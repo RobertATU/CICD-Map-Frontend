@@ -15,6 +15,7 @@ export default function HamMenuContent(props) {
     function clicked(longitude,latitude) {
         globalCtx.updateGlobals({ cmd: 'updateMapCenter', newCenter: [longitude,latitude] })
         console.log(longitude,latitude)
+        globalCtx.updateGlobals({ cmd: 'updateMapCenter', newCenter: [longitude,latitude] })
     }
 
     function closeMe() {

@@ -9,7 +9,7 @@ import { createContext, useState, useEffect } from 'react'
 const GlobalContext = createContext()
 
 export function GlobalContextProvider(props) {
-    const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true,pins: [],mapCenter:[-9.0105,53.2787] , dataLoaded: false })
+    const [globals, setGlobals] = useState({ aString: 'init val', count: 0, hideHamMenu: true,pins: [],mapCenter:[-9.0105,53.2787] , dataLoaded: false , sheepId:'init val'})
 
  
     useEffect(() => {
@@ -30,6 +30,17 @@ export function GlobalContextProvider(props) {
         }
         
         setGlobals((previousGlobals) => { const newGlobals = JSON.parse(JSON.stringify(previousGlobals)); newGlobals.pins = data;newGlobals.dataLoaded = true; return newGlobals })
+    }
+    async function deletePinById(sheepId){
+        console.log(sheepId)
+        await fetch('/api/delete-pins',{
+        method:'Post',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(sheepId),
+       });
+       await getAllPins();
     }
 
     async function editGlobalData(command) { // {cmd: someCommand, newVal: 'new text'}
@@ -56,6 +67,7 @@ export function GlobalContextProvider(props) {
 
     const context = {
         updateGlobals: editGlobalData,
+        deletePins: deletePinById,
         theGlobalObject: globals
     }
 
