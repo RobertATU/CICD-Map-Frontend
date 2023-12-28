@@ -1,6 +1,6 @@
 async function handler(req, res) { 
   
-  const response = await fetch('http://localhost:8080/pins', {
+  const response = await fetch('http://frontend-link:8080/pins', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
