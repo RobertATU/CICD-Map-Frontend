@@ -46,7 +46,7 @@ function Map(props) {
           .addTo(map);
 
           const pinPopContent = document.createElement('div');
-          pinPopContent.innerHTML = `<h3>${pins[i].sheepId}</h3><p>Seen at: ${pins[i].date}</p><button id="deleteButton_${i}">test</button>`;
+          pinPopContent.innerHTML = `<h3>${pins[i].sheepId}</h3><p>Seen at: ${pins[i].date}</p><button id="deleteButton_${i}">Delete</button>`;
 
           const pinPopup =  new mapboxgl.Popup().setDOMContent(pinPopContent);
           pin.setPopup(pinPopup);
